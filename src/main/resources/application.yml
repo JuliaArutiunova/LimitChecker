@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: LimitChecker
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true

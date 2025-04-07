@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/limit_checker
+    username: postgres
+    password: 13245
+    hikari:
+      maximum-pool-size: 15
+
+  liquibase:
+    default-schema: app
+
+server:
+  port: 8070
