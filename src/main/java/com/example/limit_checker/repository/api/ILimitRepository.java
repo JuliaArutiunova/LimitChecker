@@ -38,4 +38,18 @@ public interface ILimitRepository extends JpaRepository<LimitEntity, UUID> {
     List<LimitInfoProjection> findAllByAccountAndCategoryOrderByDateDesc(
             @Param("account") String account,
             @Param("expenseCategory") String expenseCategory);
+
+    @Query("""
+            SELECT l
+            FROM LimitEntity l
+            WHERE l.datetime = (
+                SELECT MAX(l.datetime)
+                FROM LimitEntity l
+                WHERE
+                    l.account = :account AND
+                    l.expenseCategory = :expenseCategory)""")
+    LimitEntity findCurrentLimitByAccountAndCategory(@Param("account") String account,
+                                                     @Param("expenseCategory") String expenseCategory);
+
+    boolean existsByAccountAndExpenseCategory(String account, String expenseCategory);
 }

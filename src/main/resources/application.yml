@@ -5,3 +5,7 @@ spring:
     properties:
       hibernate:
         show_sql: true
+
+limit:
+  default-currency: USD
+  default-sum: 1000

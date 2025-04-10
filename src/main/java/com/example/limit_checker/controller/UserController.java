@@ -38,6 +38,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createLimit(@PathVariable("account") String account,
                             @RequestBody @Valid LimitCreateDto limitCreateDto) {
+        limitService.create(account, limitCreateDto);
     }
 
     @GetMapping("/{account}/transactions/exceeded-limit")
