@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file:  db/changelog/sql/01_create_tables.sql
+  - include:
+      file:  db/changelog/sql/02_add_spent_reset_datetime_column.sql

@@ -32,23 +32,27 @@ public class LimitEntity {
     private OffsetDateTime datetime;
 
     @Column(name = "current_spent")
-    private BigDecimal currentSpent = BigDecimal.ZERO;
+
+    private BigDecimal currentSpent;
+
+    @Column(name = "spent_reset_datetime")
+    private OffsetDateTime spentResetDatetime;
 
     @Builder
     public LimitEntity(String account, String expenseCategory,
-                       String currencyShortname, BigDecimal sum, BigDecimal currentSpent) {
+                       String currencyShortname, BigDecimal sum,
+                       BigDecimal currentSpent, OffsetDateTime spentResetDatetime) {
         this.account = account;
         this.expenseCategory = expenseCategory;
         this.currencyShortname = currencyShortname;
         this.sum = sum;
         this.currentSpent = currentSpent;
-    }
-
-
-    @PrePersist
-    private void prePersist() {
+        this.spentResetDatetime = spentResetDatetime;
         this.datetime = OffsetDateTime.now();
     }
+
+
+
 
 
 }
