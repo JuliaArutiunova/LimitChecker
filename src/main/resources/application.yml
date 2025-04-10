@@ -9,3 +9,9 @@ spring:
 limit:
   default-currency: USD
   default-sum: 1000
+
+client:
+  twelve-data-api:
+    url: https://api.twelvedata.com/time_series
+    api-key: ${TWELVE_DATA_API_KEY}
+    interval: 1day
