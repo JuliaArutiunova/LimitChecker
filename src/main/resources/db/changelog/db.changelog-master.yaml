@@ -3,3 +3,7 @@ databaseChangeLog:
       file:  db/changelog/sql/01_create_tables.sql
   - include:
       file:  db/changelog/sql/02_add_spent_reset_datetime_column.sql
+  - include:
+      file: db/changelog/sql/03_create_exchange_rate_table.sql
+  - include:
+      file: db/changelog/sql/04_add_data_to_exchange_rate.sql
