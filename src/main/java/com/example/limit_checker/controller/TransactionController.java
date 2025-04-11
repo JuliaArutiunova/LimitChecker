@@ -26,15 +26,12 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Receive Transaction",
             description = "Endpoint for receiving and processing new transactions from banking services.",
-            requestBody = @RequestBody(
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = TransactionCreateDto.class))
-            ),
             responses = {
                     @ApiResponse(responseCode = "201",
                             description = "Transaction successfully received and processed."),
@@ -48,6 +45,7 @@ public class TransactionController {
                                     schema = @Schema(implementation = ErrorResponseDto.class)))
             }
     )
+
     public void save(@RequestBody @Valid TransactionCreateDto transactionCreateDto) {
         transactionService.create(transactionCreateDto);
     }

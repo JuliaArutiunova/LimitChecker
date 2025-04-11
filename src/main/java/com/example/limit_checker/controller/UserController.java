@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -76,10 +75,6 @@ public class UserController {
                     @Parameter(name = "account", in = ParameterIn.PATH, description = "Account identifier.",
                             required = true, schema = @Schema(type = "string", example = "0001234567"))
             },
-            requestBody = @RequestBody(
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = LimitCreateDto.class))
-            ),
             responses = {
                     @ApiResponse(responseCode = "201", description = "Limit successfully created."),
                     @ApiResponse(responseCode = "400", description = "Invalid limit data provided.",
