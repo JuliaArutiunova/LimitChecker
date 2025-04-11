@@ -16,28 +16,28 @@ import java.time.OffsetDateTime;
 @Data
 @Builder
 public class TransactionCreateDto {
-    @JsonProperty("account_from")
-    @NotBlank
+    @JsonProperty(value = "account_from")
+    @NotBlank(message = "a value is required")
     @AccountId
     private String accountFrom;
 
-    @JsonProperty("account_to")
-    @NotBlank
+    @JsonProperty(value = "account_to")
+    @NotBlank(message = "a value is required")
     @AccountId
     private String accountTo;
 
-    @JsonProperty("currency_shortname")
-    @NotBlank
+    @JsonProperty(value = "currency_shortname")
+    @NotBlank(message = "a value is required")
     private String currencyShortname;
 
-    @NotNull
+    @NotNull(message = "a value is required")
     private BigDecimal sum;
 
-    @JsonProperty("expense_category")
-    @NotBlank
+    @JsonProperty(value = "expense_category")
+    @NotBlank(message = "a value is required")
     private String expenseCategory;
 
-    @NotNull
+    @NotNull(message = "a value is required")
     private OffsetDateTime datetime;
 
 }

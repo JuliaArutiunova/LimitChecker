@@ -14,10 +14,10 @@ import java.math.BigDecimal;
 @Data
 public class LimitCreateDto {
     @JsonProperty("expense_category")
-    @NotBlank
+    @NotBlank(message = "a value is required")
     private String expenseCategory;
 
-    @NotNull
+    @NotNull(message = "a value is required")
     private BigDecimal sum;
 
 }

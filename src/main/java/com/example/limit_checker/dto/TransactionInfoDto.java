@@ -15,28 +15,30 @@ import java.time.OffsetDateTime;
 @Data
 @Builder
 public class TransactionInfoDto {
-    @JsonProperty("account_from")
+    @JsonProperty(value = "account_from", index = 0)
     private String accountFrom;
 
-    @JsonProperty("account_to")
+    @JsonProperty(value = "account_to", index = 1)
     private String accountTo;
 
-    @JsonProperty("currency_shortname")
+    @JsonProperty(value = "currency_shortname", index = 2)
     private String currencyShortname;
 
+    @JsonProperty(index = 3)
     private BigDecimal sum;
 
-    @JsonProperty("expense_category")
+    @JsonProperty(value = "expense_category", index = 4)
     private String expenseCategory;
 
+    @JsonProperty(index = 5)
     private OffsetDateTime datetime;
 
-    @JsonProperty("limit_sum")
+    @JsonProperty(value = "limit_sum", index = 6)
     private BigDecimal limitSum;
 
-    @JsonProperty("limit_datetime")
+    @JsonProperty(value = "limit_datetime", index = 7)
     private OffsetDateTime limitDatetime;
 
-    @JsonProperty("limit_currency_shortname")
+    @JsonProperty(value = "limit_currency_shortname", index = 8)
     private String limitCurrencyShortname;
 }
