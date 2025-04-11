@@ -72,7 +72,45 @@ public class LimitService implements ILimitService {
 
 
     @Override
-    public LimitEntity get(String account) {
-        return null;
+    @Transactional
+    public LimitEntity createDefault(String account, String expenseCategory) {
+        LimitEntity limitEntity = LimitEntity.builder()
+                .account(account)
+                .expenseCategory(expenseCategory)
+                .currencyShortname(defaultLimitCurrency)
+                .sum(defaultLimitSum)
+
+                .currentSpent(BigDecimal.ZERO)
+                .spentResetDatetime(OffsetDateTime.now())
+                .build();
+        limitRepository.saveAndFlush(limitEntity);
+        return limitEntity;
+    }
+
+    @Transactional
+    @Override
+    public void save(LimitEntity limitEntity) {
+        limitRepository.saveAndFlush(limitEntity);
+
+    }
+
+   public LimitEntity defineLimit(String accountFrom, String expenseCategory){
+        LimitEntity limitEntity;
+        if (limitRepository.existsByAccountAndExpenseCategory(accountFrom, expenseCategory)) {
+            limitEntity = limitRepository.findCurrentLimitByAccountAndCategory(accountFrom, expenseCategory);
+            if (!limitEntity.getSpentResetDatetime().getMonth().equals(OffsetDateTime.now().getMonth())) {
+                limitEntity.setCurrentSpent(BigDecimal.ZERO);
+                limitEntity.setSpentResetDatetime(OffsetDateTime.now());
+                limitRepository.saveAndFlush(limitEntity);
+            }
+        } else {
+            limitEntity = createDefault(accountFrom, expenseCategory);
+        }
+        return limitEntity;
+    }
+
+    @Override
+    public String getDefaultCurrency() {
+        return this.defaultLimitCurrency;
     }
 }

@@ -13,5 +13,11 @@ public interface ILimitService {
 
     List<LimitInfoDto> getAllByExpenseCategory(String account, String expenseCategory);
 
-    LimitEntity get(String account);
+    LimitEntity createDefault(String account, String expenseCategory);
+
+    void save(LimitEntity limitEntity);
+
+    LimitEntity defineLimit(String accountFrom, String expenseCategory);
+
+    String getDefaultCurrency();
 }
