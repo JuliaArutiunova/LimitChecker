@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -98,7 +99,7 @@ public class LimitService implements ILimitService {
         LimitEntity limitEntity;
         if (limitRepository.existsByAccountAndExpenseCategory(accountFrom, expenseCategory)) {
             limitEntity = limitRepository.findCurrentLimitByAccountAndCategory(accountFrom, expenseCategory);
-            if (!limitEntity.getSpentResetDatetime().getMonth().equals(OffsetDateTime.now().getMonth())) {
+            if (!YearMonth.from(limitEntity.getSpentResetDatetime()).equals(YearMonth.from(OffsetDateTime.now()))) {
                 limitEntity.setCurrentSpent(BigDecimal.ZERO);
                 limitEntity.setSpentResetDatetime(OffsetDateTime.now());
                 limitRepository.saveAndFlush(limitEntity);
