@@ -15,3 +15,6 @@ client:
     url: https://api.twelvedata.com/time_series
     api-key: ${TWELVE_DATA_API_KEY}
     interval: 1day
+
+exchange:
+  currency-pairs: RUB/USD,KZT/USD
