@@ -23,7 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name = "Client API",
+@Tag(name = "User API",
         description = "Client-facing API for managing user account limits and retrieving transaction information.")
 public class UserController {
 
