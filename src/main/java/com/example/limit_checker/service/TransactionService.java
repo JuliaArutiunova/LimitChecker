@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
@@ -93,7 +94,7 @@ public class TransactionService implements ITransactionService {
 
     private BigDecimal convertSum(BigDecimal sum, String currencyBase, String currencyQuote) {
         BigDecimal rate = exchangeRateService.getCurrentRate(currencyBase, currencyQuote);
-        return sum.multiply(rate);
+        return sum.multiply(rate).setScale(2, RoundingMode.HALF_UP);
     }
 
 
