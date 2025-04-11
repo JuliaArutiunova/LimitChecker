@@ -18,3 +18,11 @@ client:
 
 exchange:
   currency-pairs: RUB/USD,KZT/USD
+
+logging:
+  file:
+    path: ./logs
+  level:
+    root: INFO
+  pattern:
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{15} - %msg%n'
